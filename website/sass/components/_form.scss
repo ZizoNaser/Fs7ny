@@ -1,0 +1,50 @@
+.form{
+   
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+    padding: 2rem;
+    &__group{
+        width: 100%;
+        margin: 2rem;
+    }
+    &__input{
+        color: inherit;
+        display: block;
+        width: 90%;
+        font-size: 1.5rem;
+        font-family: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: var( --color-grey-light-3);
+        border: none;
+        border-bottom: 3px solid transparent;
+        transition: all .2s;
+        &:focus{
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+            border-bottom: 3px solid var(--color-primary-light);
+        }
+        &:focus:invalid{
+            border-bottom: 3px solid #ff7730;
+        }
+        
+    }
+    
+    &__label{
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-right: .7rem;
+        transition: all .2s;
+    }
+    &__input:placeholder-shown + &__label{
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+}
