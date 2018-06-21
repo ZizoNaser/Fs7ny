@@ -10,11 +10,26 @@
     &__group{
         width: 100%;
         margin: 2rem;
+        
+    }
+    &__btn-group{
+        width: 100%;
+        margin: 2rem;
+        display: flex;
+        justify-content: space-around;
+        @media only screen and (max-width: $bp-smallest) {
+            margin: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+
     }
     &__input{
         color: inherit;
         display: block;
-        width: 90%;
+        width: 100%;
         font-size: 1.5rem;
         font-family: inherit;
         padding: 1.5rem 2rem;
@@ -26,12 +41,16 @@
         &:focus{
             outline: none;
             box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
-            border-bottom: 3px solid var(--color-primary-light);
+            border-bottom: 3px solid var(--color-green-light);
         }
         &:focus:invalid{
-            border-bottom: 3px solid #ff7730;
+            border-bottom: 3px solid var(--color-orange-dark);
         }
         
+    }
+    &__passwd-toggle{
+        display: inline-block;
+        margin-right: -3rem;
     }
     
     &__label{
@@ -42,7 +61,7 @@
         margin-right: .7rem;
         transition: all .2s;
     }
-    &__input:placeholder-shown + &__label{
+    &__input:placeholder-shown ~ &__label{
         opacity: 0;
         visibility: hidden;
         transform: translateY(-4rem);

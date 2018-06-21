@@ -38,8 +38,8 @@
                         <span class="user-nav__notification">13</span>
                     </div>
                     <div class="user-nav__user">
-                        <img src="img/user.jpg" alt="User photo" class="user-nav__user-photo">
-                        <span class="user-nav__user-name">Zizo Naser</span>
+                        <img src="img/no-user.png" alt="User photo" class="user-nav__user-photo">
+                        <span class="user-nav__user-name">user name</span>
                     </div>
                 </nav>
             </header>
@@ -56,7 +56,7 @@
                                 <span>Hotel</span>
                             </a>
                         </li>
-                        <li class="side-nav__item side-nav__item--active">
+                        <li class="side-nav__item ">
                             <a href="#" class="side-nav__link ">
                                 <svg class="side-nav__icon">
                                     <use xlink:href="img/sprite.svg#icon-aircraft-take-off"></use>
@@ -89,34 +89,46 @@
 
 
 
-                <main class="hotel-search-view">
-                   <div class="box">
-                    <form action="#" class="form">
-                        <h1 class="heading-secondary">
-                            Find a flight
-                        </h1>
-                        <div class="form__group">
-                            <input type="text" class="form__input" placeholder="Depart" id="Depart" required>
-                            <label for="Depart" class="form__label">Depart</label>
-                        </div>
-                        <div class="form__group">
-                                <input type="text" class="form__input" placeholder="Destination" id="Destination" required>
-                                <label for="Destination" class="form__label">Destination</label>
-                        </div>
-                        <div class="form__group">
-                            <label for="start-date" class="form__label">Date</label>
-                            <input type="date" class="form__input"  id="date" >
+                <main class="login-view">
+                    <div class="box">
+                        <form action="#" class="form">
+                            <h1 class="heading-secondary">
+                                Welcome
+                            </h1>
+                            <div class="form__btn-group">
+                                <div class="form__group">
+                                    <input type="text" class="form__input" placeholder="First Name" id="first-name" required>
+                                    <label for="first-name" class="form__label">First Name</label>
+                                </div>
+    
+                                <div class="form__group">
+                                    <input type="text" class="form__input" placeholder="Last Name" id="last-name" required>
+                                    <label for="last-name" class="form__label">Last Name</label>
+                                </div>
+    
+                            </div>
                             
-                        </div>
-                        <div class="form__group form__btn-group">
-                            <button class="btn btn--animated">
-                                    <span class="btn__visible">Find</span>
-                                    <span class="btn__invisible">Now</span>
-                            </button>
-                        </div> 
-                                
-                    </form>
-                   </div>
+                            <div class="form__group">
+                                <input type="text" class="form__input" placeholder="User Name" id="user-name" required>
+                                <label for="user-name" class="form__label">User Name</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="email" class="form__input" placeholder="E-mail" id="email" required>
+                                <label for="email" class="form__label">E-mail</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="password" class="form__input" placeholder="Password" id="password" required>
+                                <!-- TODO <input type="checkbox" onclick="" class="form__passwd-toggle"> -->
+                                <label for="password" class="form__label">Password</label>
+                            </div>
+                            
+                            <div class="form__group form__btn-group">
+                                <button class=" btn btn--green ">
+                                    <span class="btn__visible">Sign up </span>  
+                                </button>
+                            </div>      
+                        </form>
+                    </div>
                 </main>
             </div>
         </div>
