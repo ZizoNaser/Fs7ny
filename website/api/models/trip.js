@@ -9,8 +9,9 @@ const tripSchema = new mongoose.Schema({
     attendees: [{ _userId: mongoose.Schema.Types.ObjectId }],       // users attending the trip
     rate: { type: Number, required: true },
     ownerCompany: { _companyId: mongoose.Schema.Types.ObjectId },
-    startDate: {type: new Date(), required: true },
-    endDate: {type: new Date(), required: true }
+    startDate: {type: String, required: true },
+    endDate: {type: String, required: true },
+    tripImage: {type: String, default: null}
 });
 
 module.exports = mongoose.model('Trip', tripSchema);

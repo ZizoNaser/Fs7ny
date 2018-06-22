@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
 const Trip = require("../models/trip");
 
+
+
 exports.trips_get_all = (req, res, next) => {
   Trip.find()               // get all trips
-    .select("name price _id description startDate endDate duration ownerCompany rate attendees")
+    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage")
+    .populat('attendees')
     .exec()
     .then(docs => {
       const response = {
@@ -19,6 +22,7 @@ exports.trips_get_all = (req, res, next) => {
             startDate: doc.startDate,
             endDate: doc.endDate,
             attendees: doc.attendees,
+            tripImage: doc.tripImage,
             _id: doc._id,
             request: {
               type: "GET",
@@ -43,7 +47,7 @@ exports.trips_get_all = (req, res, next) => {
     });
 };
 
-exports.trips_create_trip = (req, res, next) => {
+exports.trips_create_trip = (req, res) => {
   const trip = new Trip({           // create new trip
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -54,7 +58,8 @@ exports.trips_create_trip = (req, res, next) => {
     rate: req.body.rate,
     startDate: req.body.startDate,
     endDate: doreq.bodyc.endDate,
-    attendees: req.body.attendees
+    attendees: req.body.attendees,
+    tripImage: req.file.path
   });           
   trip                  // save to database
     .save()
@@ -72,6 +77,7 @@ exports.trips_create_trip = (req, res, next) => {
         attendees: result.attendees,
         name: result.name,
         price: result.price,
+        tripImage: result.tripImage,
         _id: result._id,
         request: {
             type: "GET",
@@ -91,7 +97,8 @@ exports.trips_create_trip = (req, res, next) => {
 exports.trips_get_trip = (req, res, next) => {
   const id = req.params.tripId;     // get specific trip by id
   Trip.findById(id)
-    .select("name price _id description startDate endDate duration ownerCompany rate attendees ")
+    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage")
+    .populat('attendees')
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -146,7 +153,7 @@ exports.trips_delete = (req, res, next) => {
     .exec()
     .then(result => {
       res.status(200).json({
-        message: "trip deleted",
+        message: "Trip deleted",
         request: {
           type: "POST",
           url: "http://localhost:3000/trips",

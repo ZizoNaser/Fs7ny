@@ -1,29 +1,27 @@
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const morgan = require('morgan');
 
 const tripRoutes = require("./api/routes/trips");
-const orderRoutes = require("./api/routes/orders");
-const companyRoutes = require('./api/routes/company');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect(
-  "mongodb://node-shop:" +
-    process.env.MONGO_ATLAS_PW +
-    "@node-rest-shop-shard-00-00-wovcj.mongodb.net:27017,node-rest-shop-shard-00-01-wovcj.mongodb.net:27017,node-rest-shop-shard-00-02-wovcj.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin",
-  {
-    useMongoClient: true
-  }
-);
+"mongodb://Mohamed-fawzi:"+ 
+process.env.MONGO_ATLAS_PW +
+ "@natours-shard-00-00-xfdku.mongodb.net:27017,natours-shard-00-01-xfdku.mongodb.net:27017,natours-shard-00-02-xfdku.mongodb.net:27017/test?ssl=true&replicaSet=Natours-shard-0&authSource=admin&retryWrites=true" , 
+ {
+  useMongoClient: true
+ });
 mongoose.Promise = global.Promise;
 
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
+app.use((req, res, next) => {                             // Preventing CORS Errors
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -38,8 +36,7 @@ app.use((req, res, next) => {
 
 // Routes which should handle requests
 app.use("/trips", tripRoutes);
-app.use("/orders", orderRoutes);
-app.use("/company", companyRoutes);
+app.use("/user", userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

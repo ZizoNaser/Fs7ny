@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/user");
+const User = require("../models/company");
 
-exports.user_signup = (req, res, next) => {
+exports.company_signup = (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
     .then(user => {
@@ -55,7 +55,7 @@ exports.user_login = (req, res, next) => {
           message: "Auth failed!"
         });
       }
-      bcrypt.compare(req.body.password, user[0].password, (err, result) => {  // check the user password if the email is found
+      bcrypt.compare(req.body.password, company[0].password, (err, result) => {  // check the user password if the email is found
         if (err) {
           return res.status(401).json({
             message: "Auth failed!"
@@ -73,7 +73,7 @@ exports.user_login = (req, res, next) => {
             }
           );
           return res.status(200).json({
-            message: "Auth successful",   // Logged in successfully
+            message: "Auth successful!",   // Logged in successfully
             token: token
           });
         }
@@ -94,7 +94,6 @@ exports.user_delete = (req, res, next) => {
   User.remove({ _id: req.params.userId })
     .exec()
     .then(result => {
-      console.log(result);
       res.status(200).json({
       message: "User deleted!"
       });
