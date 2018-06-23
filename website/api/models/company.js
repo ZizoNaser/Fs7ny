@@ -10,9 +10,10 @@ const companySchema = new mongoose.Schema({
         trim: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
-        trim: true
+        trim: true,
+        minlength:11
     },
     email: {
       type: String,
@@ -35,7 +36,7 @@ const companySchema = new mongoose.Schema({
         required: true,
         minlength: 10
     },
-    trips: [{ _tripId: mongoose.Schema.Types.ObjectId }],
+    trips: [{ _tripId: mongoose.Schema.Types.ObjectId, ref: 'Trip' }],
     rate: { type: Number, required: true }
   });
 

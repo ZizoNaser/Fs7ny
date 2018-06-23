@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       trim: true,
       unique: true,
       minlength: 1,
+      // match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       validate: {
         validator: validator.isEmail,
         message: '{VALUE} is not a valid email!'

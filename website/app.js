@@ -1,23 +1,26 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const {mongoose} = require("./db/mongoose");
 const morgan = require('morgan');
 
 const tripRoutes = require("./api/routes/trips");
 const userRoutes = require('./api/routes/user');
 
-mongoose.connect(
-"mongodb://Mohamed-fawzi:"+ 
-process.env.MONGO_ATLAS_PW +
- "@natours-shard-00-00-xfdku.mongodb.net:27017,natours-shard-00-01-xfdku.mongodb.net:27017,natours-shard-00-02-xfdku.mongodb.net:27017/test?ssl=true&replicaSet=Natours-shard-0&authSource=admin&retryWrites=true" , 
- {
-  useMongoClient: true
- });
-mongoose.Promise = global.Promise;
+// mongoose.connect(
+// "mongodb://Mohamed-fawzi:"+ 
+// process.env.MONGO_ATLAS_PW +
+//  "@natours-shard-00-00-xfdku.mongodb.net:27017,natours-shard-00-01-xfdku.mongodb.net:27017,natours-shard-00-02-xfdku.mongodb.net:27017/test?ssl=true&replicaSet=Natours-shard-0&authSource=admin&retryWrites=true" , 
+//  {
+//   useMongoClient: true
+//  });
+
+
 
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

@@ -23,6 +23,7 @@ exports.trips_get_all = (req, res, next) => {
             endDate: doc.endDate,
             attendees: doc.attendees,
             tripImage: doc.tripImage,
+            availableSeats: doc.availableSeats,
             _id: doc._id,
             request: {
               type: "GET",
@@ -59,7 +60,8 @@ exports.trips_create_trip = (req, res) => {
     startDate: req.body.startDate,
     endDate: doreq.bodyc.endDate,
     attendees: req.body.attendees,
-    tripImage: req.file.path
+    tripImage: req.file.path,
+    availableSeats: req.body.availableSeats
   });           
   trip                  // save to database
     .save()
@@ -78,6 +80,7 @@ exports.trips_create_trip = (req, res) => {
         name: result.name,
         price: result.price,
         tripImage: result.tripImage,
+        availableSeats: result.availableSeats,
         _id: result._id,
         request: {
             type: "GET",

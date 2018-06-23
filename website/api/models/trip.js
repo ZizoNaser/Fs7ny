@@ -11,7 +11,8 @@ const tripSchema = new mongoose.Schema({
     ownerCompany: { _companyId: mongoose.Schema.Types.ObjectId },
     startDate: {type: String, required: true },
     endDate: {type: String, required: true },
-    tripImage: {type: String, default: null}
+    tripImage: {type: String, default: null},
+    availableSeats: {type: Number, required:true, default:null}
 });
 
 module.exports = mongoose.model('Trip', tripSchema);

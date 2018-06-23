@@ -5,15 +5,15 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.user_signup = (req, res, next) => {
-  User.find({ email: req.body.email })
+  User.find({ email: req.body.email })      // Check for duplicate email
     .exec()
     .then(user => {
-      if (user.length >= 1) {                 // the email is used before
+      if (user.length >= 1) {             // Check because it might be null            
         return res.status(409).json({
-          message: "Mail exists"
+          message: "Mail exists!"
         });
       } else {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {     // Hash the password and salt it
           if (err) {
             return res.status(500).json({
               error: err
@@ -55,7 +55,7 @@ exports.user_login = (req, res, next) => {
           message: "Auth failed!"
         });
       }
-      bcrypt.compare(req.body.password, user[0].password, (err, result) => {  // check the user password if the email is found
+      bcrypt.compare(req.body.password, user[0].password, (err, result) => {  // check the user's hashed password
         if (err) {
           return res.status(401).json({
             message: "Auth failed!"
