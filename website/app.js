@@ -6,6 +6,7 @@ const morgan = require('morgan');
 
 const tripRoutes = require("./api/routes/trips");
 const userRoutes = require('./api/routes/user');
+const paypalRoutes = require('./api/routes/paypal');
 
 // mongoose.connect(
 // "mongodb://Mohamed-fawzi:"+ 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {                             // Preventing CORS Err
 // Routes which should handle requests
 app.use("/trips", tripRoutes);
 app.use("/user", userRoutes);
+app.use("/pay", paypalRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

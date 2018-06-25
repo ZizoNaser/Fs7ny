@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
     fileFilter: fileFilter
   });
   
-
+//  Normal user routes
 router.get("/", tripsController.trips_get_all);
 
 router.post("/", checkAuth, upload.single('tripImage'), tripsController.trips_create_trip);
@@ -36,5 +36,15 @@ router.get("/:tripId", tripsController.trips_get_trip);
 router.patch("/:tripId", checkAuth, tripsController.trips_update_trip);
 
 router.delete("/:tripId", checkAuth, tripsController.trips_delete);
+
+
+//  Company routes
+// router.get("/", checkAuth, userController.companies_get_all);
+
+// router.post("/", checkAuth, compainesController.companies_create_company);
+
+// router.get("/:companyId", checkAuth, compainesController.compaines_get_company);
+
+// router.delete("/:companyId", checkAuth, compainesController.compaines_delete_company);
 
 module.exports = router;

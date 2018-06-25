@@ -6,16 +6,16 @@ const Trip = require("../models/trip");
 exports.reservations_get_all = (req, res, next) => {
   Reservation.find()
     .select("trip seats _id")
-    .populate("trip", "name")
+    .populate("trip", "name price")
     .exec()
     .then(docs => {
       res.status(200).json({
         count: docs.length,
         reservations: docs.map(doc => {
           return {
-            _id: doc._id,
             trip: doc.trip,
             seats: doc.seats,
+            totalPrice: doc.totalPrice,
             request: {
               type: "GET",
               url: "http://localhost:3000/reservations/" + doc._id
@@ -42,8 +42,10 @@ exports.reservations_create_reservation = (req, res, next) => {
       const reservation = new Reservation({
         _id: mongoose.Types.ObjectId(),
         seats: req.body.seats,
-        trip: req.body.tripId
+        trip: trip,
+        $setOnInsert: { reservationDate: new Date() }
       });
+      reservation.totalPrice = (trip.price * reservation.seats)
       trip.availableSeats -= reservation.seats;
       return reservation.save();
     })
@@ -51,10 +53,11 @@ exports.reservations_create_reservation = (req, res, next) => {
       console.log(result);
       res.status(201).json({
         message: "Reservation stored!",
-        createreservation: {
+        createdReservation: {
           _id: result._id,
           trip: result.trip,
-          seats: result.seats
+          seats: result.seats,
+          totalPrice: result.totalPrice
         },
         request: {
           type: "GET",
@@ -72,7 +75,7 @@ exports.reservations_create_reservation = (req, res, next) => {
 
 exports.reservations_get_reservation = (req, res, next) => {
   Reservation.findById(req.params.reservationId)
-    .populate("trip")
+    .populate("trip", "name price seats")
     .exec()
     .then(reservation => {
       if (!reservation) {

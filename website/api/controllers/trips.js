@@ -5,7 +5,7 @@ const Trip = require("../models/trip");
 
 exports.trips_get_all = (req, res, next) => {
   Trip.find()               // get all trips
-    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage")
+    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage availableSeats")
     .populat('attendees')
     .exec()
     .then(docs => {
@@ -100,7 +100,7 @@ exports.trips_create_trip = (req, res) => {
 exports.trips_get_trip = (req, res, next) => {
   const id = req.params.tripId;     // get specific trip by id
   Trip.findById(id)
-    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage")
+    .select("name price _id description startDate endDate duration ownerCompany rate attendees tripImage availabeSeats")
     .populat('attendees')
     .exec()
     .then(doc => {
