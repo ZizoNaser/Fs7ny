@@ -1,0 +1,9 @@
+.results-view{
+    background-color: var(white);
+    width: 100%;
+    margin: 5rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem,1fr));
+    grid-gap: 7rem;   
+
+}
