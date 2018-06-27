@@ -3,24 +3,30 @@
 @import "base/base";
 @import "base/typograph";
 
+@import "layout/box";
 @import "layout/container";
 @import "layout/content";
 @import "layout/description";
 @import "layout/detail";
 @import "layout/header";
 @import "layout/hotelView";
+@import "layout/hotelSearchView";
+@import "layout/loginView";
+@import "layout/resultsView";
 @import "layout/sidebar";
 @import "layout/userReview";
 
 @import "components/btn";
 @import "components/btnInline";
 @import "components/cta";
+@import "components/form";
 @import "components/gallery";
 @import "components/legal";
 @import "components/logo";
 @import "components/overView";
 @import "components/recommend";
 @import "components/review";
+@import "components/result";
 @import "components/search";
 @import "components/sideNav";
 @import "components/userNav";

@@ -32,11 +32,11 @@
         background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
     }
 
-    &:hover &__visible {
+    &--animated:hover &__visible {
         transform: translateY(100%);
     }
 
-    &:hover &__invisible {
+    &--animated:hover &__invisible {
         top: 0;
     }
 
@@ -44,4 +44,20 @@
         outline: none;
         animation: pulsate 1s infinite;
     }
+
+    &--green{
+        background-image: linear-gradient(to right, var(--color-green-light), var(--color-green-dark));
+    }
+  
+    &--green:hover{
+        background-image: linear-gradient(to left, var(--color-green-light), var(--color-green-dark));
+    }
+    &--blue{
+        background-image: linear-gradient(to right, var(--color-blue-light), var(--color-blue-dark));
+    }
+  
+    &--blue:hover{
+        background-image: linear-gradient(to left, var(--color-blue-light), var(--color-blue-dark));
+    }
+    
 }
