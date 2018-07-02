@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Icon from 'react-svg';
+import Icon from 'react-use-svg';
 import './../css/style.css';
 
 class Form extends Component{

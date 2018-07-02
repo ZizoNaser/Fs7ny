@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-svg';
+import '../../css/style.css';
 
 const Notifications = (props) => {
 
@@ -13,3 +14,5 @@ const Notifications = (props) => {
     );
 
 }
+
+export default Notifications;
