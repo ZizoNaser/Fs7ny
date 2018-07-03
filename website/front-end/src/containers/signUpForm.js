@@ -122,7 +122,7 @@ class SignUp extends Component {
         const user = {
             userData: data
         }
-
+        //TODO: add api url without http://localhost:3000 as i made it default in index.js
         axios.post('', user)
             .then(response => {
                 this.setState({ loading: false })
@@ -169,7 +169,7 @@ class SignUp extends Component {
         }
 
         let form = (
-            <Aux>
+            <div className='box'>
                 <h1 className='heading-secondary'>Welcome</h1>
                 <form className='form' onSubmit={this.userDataHandler}>
                     {formElements.map(element => (
@@ -190,7 +190,7 @@ class SignUp extends Component {
                             disabled={!this.state.formIsValid} />
                     </div>
                 </form>
-            </Aux>
+                </div>
         );
 
         if (this.state.loading)
@@ -198,9 +198,9 @@ class SignUp extends Component {
 
         return (
             <main className='login-view'>
-                <div className='box'>
+                
                     {form}
-                </div>
+                
             </main>
         );
     }

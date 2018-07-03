@@ -133,7 +133,7 @@ class Form extends Component {
                   Find a Flight
                 </h1>   
                 {form}
-                <Button name = 'Find' disabled={!this.state.formIsValid}/>
+                <Button name = 'Find' invisible = 'Now' disabled={!this.state.formIsValid}/>
             </div>
             </main>
         );

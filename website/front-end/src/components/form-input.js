@@ -5,6 +5,7 @@ const Input = (props) => {
     let inputElement = null;
     let inputClass = ['form__input'];
 
+//TODO: add style for invalid input
     if(props.invalid){
        inputClass.push('invalid');
     }
@@ -12,7 +13,7 @@ const Input = (props) => {
     switch (props.inputtype) {
         case ('input'):
             inputElement = <input
-                className= {inputClass.join(':')}
+                className= {inputClass.join(' ')}
                 {...props.elementSetUp}
                 value = {props.value}
                 onChange = {props.changed}/>

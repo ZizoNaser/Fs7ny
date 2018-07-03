@@ -8,7 +8,9 @@ const Item = (props) => {
         <li className = 'side-nav__item'>
             <NavLink to = {props.link} exact= {props.exact}
             className = 'side-nav__link'
-            activeClassName = 'side-nav__item side-nav__item--active'> 
+            activeStyle = {{
+                backgroundColor: '#FF3366'
+            }}> 
               <svg className = 'side-nav__icon'> 
                 <Icon id = {props.icon}/>
               </svg>

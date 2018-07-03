@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Input from './../components/form-input';
 import Button from './../components/search-button';
+import {Route} from 'react-router-dom';
+import Hotels from './Search-results/hotel-results';
+import axios from 'axios';
 import './../css/style.css';
 
 class Form extends Component {
@@ -77,7 +80,13 @@ class Form extends Component {
         const hotel = {
             HotelData: data
         }
-        this.props.history.replace('/hotels');
+        //TODO: Add api url
+        axios.get('')
+        .then(response => {
+
+        })
+        this.props.history.push('/hotels');
+        
     }
 
 /** Handling input in form elements **/
@@ -112,7 +121,7 @@ class Form extends Component {
         }
 
         let form = (
-            <form className='form' onSubmit = {this.flightDataHandler}>
+            <form className='form' onSubmit = {this.HotelDataHandler}>
                 {formElements.map(element => (
                     <Input
                         key = {element.id} 
@@ -124,6 +133,7 @@ class Form extends Component {
                         invalid = {!element.setUp.valid}
                         changed = {(event) =>this.changeHandler(event, element.id)} />
                 ))}
+                <Button name = 'Search' invisible = 'Now' disabled={!this.state.formIsValid}/>
             </form>
         );
 
@@ -133,7 +143,8 @@ class Form extends Component {
                 Search for hotel
                 </h1>   
                 {form}
-                <Button name = 'Search' disabled={!this.state.formIsValid}/>
+                
+                
             </div>
         );
     }
